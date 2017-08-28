@@ -304,7 +304,7 @@ function recursive_remove_holders
 function libvirt_do_cleanup()
 {
     # cleanup leftover from last run
-    $sudo ${scripts_lib_dir}/libvirt/cleanup $cloud $nodenumber $cloudbr $vlan_public $ironicbr
+    $sudo ${scripts_lib_dir}/libvirt/cleanup "$cloud" "$nodenumber" "$cloudbr" "$vlan_public" "$ironicbr"
 
     if ip link show ${cloudbr}.$vlan_public >/dev/null 2>&1; then
         $sudo ip link set ${cloudbr}.$vlan_public down

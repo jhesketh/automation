@@ -1,6 +1,12 @@
 # This file shares common code between mkcloud-${mkclouddriver}.sh files and qa_crowbarsetup.sh
 
 # ---- START: functions related to repos and distribution settings
+# default vlans in crowbar
+vlan_storage=${vlan_storage:-200}
+vlan_ceph=${vlan_ceph:-600}
+vlan_public=${vlan_public:-300}
+vlan_fixed=${vlan_fixed:-500}
+vlan_sdn=${vlan_sdn:-400}
 
 function get_getent_hosts
 {
@@ -353,11 +359,6 @@ function setcloudnetvars
     esac
     test -n "$nodenumbertotal" && nodenumber=${nodenumber:-$nodenumbertotal}
     # default networks in crowbar:
-    vlan_storage=${vlan_storage:-200}
-    vlan_ceph=${vlan_ceph:-600}
-    vlan_public=${vlan_public:-300}
-    vlan_fixed=${vlan_fixed:-500}
-    vlan_sdn=${vlan_sdn:-400}
     net_fixed=${net_fixed:-192.168.123}
     net_public=${net_public:-192.168.122}
     net_storage=${net_storage:-192.168.125}
