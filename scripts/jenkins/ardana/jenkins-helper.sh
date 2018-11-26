@@ -27,6 +27,6 @@ function ansible_playbook {
   if [[ "$PWD" != *scripts/jenkins/ardana/ansible ]]; then
     cd $AUTOMATION_DIR/scripts/jenkins/ardana/ansible
   fi
-  echo "Running: ansible-playbook ${@}"
-  ansible-playbook "${@}"
+  echo "Running: ansible-playbook -vvv ${@}"
+  ansible-playbook -vvv "${@}"
 }

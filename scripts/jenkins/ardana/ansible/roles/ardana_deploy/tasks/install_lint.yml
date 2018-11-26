@@ -19,6 +19,7 @@
     name: 'ansible-lint==2.1.3'
     virtualenv: '{{ lint_venv }}'
     virtualenv_site_packages: true
+    extra_args: --no-deps
 
 - name: Install Ardana linting rules
   synchronize:
