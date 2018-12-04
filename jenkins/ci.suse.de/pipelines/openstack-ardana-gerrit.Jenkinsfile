@@ -46,6 +46,26 @@ The following links can also be used to track the results:
       }
     }
 
+    stage('Check job conditions') {
+      when {
+        expression { env.GERRIT_CHANGE_COMMIT_MESSAGE != null }
+      }
+      steps {
+        sh '''
+          echo $GERRIT_CHANGE_COMMIT_MESSAGE | base64 --decode | head -1 | grep "WIP\|DNM"
+          if [[ $? -eq 0 ]]; then
+            exit 1
+          fi
+          exit 0
+        '''
+      }
+      failure {
+        sh '''
+          echo "Skipping jobs for WIP/DNM commit message." > results.txt
+        '''
+      }
+    }
+
     stage('validate commit message') {
       when {
         expression { env.GERRIT_CHANGE_COMMIT_MESSAGE != null }
